@@ -50,6 +50,7 @@ function handleKeyboardPress(event){
         const currentScore = getTextElementValue('current_score')
         const updateScore = currentScore + 1
         setTextElementValue('current_score', updateScore)
+        setTextElementValue('final_score', updateScore)
 
         removeBackground(expectAlphabet);
         continueGame();
@@ -58,6 +59,7 @@ function handleKeyboardPress(event){
         const currentLife = getTextElementValue('current_life')
         const updateLife = currentLife - 1;
         setTextElementValue('current_life', updateLife)
+        
 
         if(updateLife === 0){
             gameOver()
@@ -81,7 +83,14 @@ document.getElementById('playNow').addEventListener('click', function(){
     continueGame()
 })
 
+document.getElementById('play_again').addEventListener('click', function(){
+    hiddenElement('score_page')
+    showElement('play_ground')
+    setTextElementValue('current_score', 0)
+    setTextElementValue('current_life', 5)
+})
+
 function gameOver(){
     hiddenElement('play_ground')
-    showElement('final_score')
+    showElement('score_page')
 }
